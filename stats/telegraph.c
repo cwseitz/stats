@@ -21,7 +21,7 @@
 //
 // user definition part
 //
-#define ENDTIME   1000.0		// end of time
+#define ENDTIME   2000.0		// end of time
 #define TIMESTEP  0.005		// interval of output
 #define OUTFILE	  "out.dat"	// output file
 #define PLTFILE   "out.plt"	// gnuplot script file 
@@ -41,13 +41,13 @@ void init(int x[], double c[], int s[][M]){
 	// population of chemical species
 	x[0] = 0; //active gene
 	x[1] = 1; //inactive gene
-    x[2] = 0; //transcripts
+        x[2] = 0; //transcripts
 
 	// reaction rates
 	c[0] = 50;
 	c[1] = 50;
-	c[2] = 100;
-    c[3] = 100;
+	c[2] = 200;
+        c[3] = 100;
 
 	//gene activation
 	s[0][0] = 1;
@@ -172,9 +172,11 @@ int main(void){
 	srand(SEED);
 	
 	FILE *out=fopen(OUTFILE, "w");
-    for(int i=0; i<M; i++){
+        fprintf(out, "t");
+	for(int i=0; i<M; i++){
 	    fprintf(out, "\tx%d", i); 
-	}  
+	}
+        fprintf(out,"\n");	
 	
 	// main loop
 	while(t < ENDTIME){
